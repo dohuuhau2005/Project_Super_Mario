@@ -1,8 +1,6 @@
 package Com.pack.Mario.ScreenBeforePlay;
 
-import com.badlogic.gdx.Game;
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.*;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.scenes.scene2d.Event;
 import com.badlogic.gdx.scenes.scene2d.EventListener;
@@ -61,6 +59,7 @@ public class LoginScreen implements Screen {
                     String password = PasswordField.getText();
                     if (username.equals("admin") && password.equals("admin")) {
                         System.out.println("Login Successful");
+                        game.setScreen(new HomeScreen(game));
 
                     } else {
                         System.out.println("Login Failed");
@@ -73,6 +72,35 @@ public class LoginScreen implements Screen {
 
     @Override
     public void show() {
+        Gdx.input.setInputProcessor(new InputAdapter() {
+            @Override
+            public boolean keyDown(int keycode) {
+                if (keycode == Input.Keys.ESCAPE) {
+                    showDialog();
+                }
+                return true;
+            }
+
+        });
+    }
+
+    private void showDialog() {
+        Dialog dialog = new Dialog("Exit ?", new Skin(Gdx.files.internal("uiskin.json"))) {
+            @Override
+            public void result(Object object) {
+                boolean yes = (boolean) object;
+                if (yes) {
+                    Gdx.app.exit();
+                } else {
+                    this.hide();
+                }
+            }
+        };
+
+        dialog.text("Exit ?");
+        dialog.button("Yes", true);
+        dialog.button("No", false);
+        dialog.show(stage);
     }
 
     @Override

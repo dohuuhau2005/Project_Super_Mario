@@ -1,6 +1,7 @@
 package Com.pack.Mario.lwjgl3;
 
 import Com.pack.Mario.Main;
+import com.badlogic.gdx.Graphics;
 import com.badlogic.gdx.backends.lwjgl3.Lwjgl3Application;
 import com.badlogic.gdx.backends.lwjgl3.Lwjgl3ApplicationConfiguration;
 
@@ -29,8 +30,20 @@ public class Lwjgl3Launcher {
         //// If you remove the above line and set Vsync to false, you can get unlimited FPS, which can be
         //// useful for testing performance, but can also be very stressful to some hardware.
         //// You may also need to configure GPU drivers to fully disable Vsync; this can cause screen tearing.
+        Graphics.DisplayMode BestDisplayMode = null;
 
-        configuration.setWindowedMode(1000, 800);
+        for (Graphics.DisplayMode mode : Lwjgl3ApplicationConfiguration.getDisplayModes()) {
+            System.out.println(mode.width + "x" + mode.height + "@" + mode.refreshRate + "Hz");
+            if (mode.width == 1920 && mode.height == 1080 && mode.refreshRate == 60) {
+                BestDisplayMode = mode;
+            }
+        }
+        if (BestDisplayMode != null) {
+            configuration.setFullscreenMode(BestDisplayMode);
+        } else {
+            configuration.setWindowedMode(1280, 720);
+        }
+
         //// You can change these files; they are in lwjgl3/src/main/resources/ .
         //// They can also be loaded from the root of assets/ .
         configuration.setWindowIcon("libgdx128.png", "libgdx64.png", "libgdx32.png", "libgdx16.png");
