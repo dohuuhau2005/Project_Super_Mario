@@ -31,3 +31,31 @@ Useful Gradle tasks and flags:
 
 Note that most tasks that are not specific to a single project can be run with `name:` prefix, where the `name` should be replaced with the ID of a specific project.
 For example, `core:clean` removes `build` folder only from the `core` project.
+
+##Structure
+
+```ProjectSuperMario/
+├── assets/
+│   ├── libgdx.png
+│   └── assets.txt
+├── core/
+│   └── assets/
+│       ├── uiskin.json
+│       ├── uiskin.png
+│       ├── uiskin.atlas
+│       └── background/
+│           ├── scene.dt
+│           ├── project.pack
+│           └── project.png
+│
+│   └── src/main/java/Com/pack/Mario/
+│       ├── Game/SuperMario.java
+│       ├── ScreenBeforePlay/LoginScreen.java
+│       └── Main.java
+│
+├── lwjgl3/
+│   └── src/main/java/Com/pack/Mario/lwjgl3/
+│       ├── Lwjgl3Launcher.java
+│       └── StartupHelper.java
+
+```
