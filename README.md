@@ -35,29 +35,27 @@ For example, `core:clean` removes `build` folder only from the `core` project.
 ##Structure
 
 ```ProjectSuperMario/
-├── assets/ # Tài nguyên chung (nếu dùng)
-│ ├── libgdx.png
-│ └── assets.txt
+├── assets/
+│   ├── libgdx.png
+│   └── assets.txt
+├── core/
+│   └── assets/
+│       ├── uiskin.json
+│       ├── uiskin.png
+│       ├── uiskin.atlas
+│       └── background/
+│           ├── scene.dt
+│           ├── project.pack
+│           └── project.png
 │
-├── core/ # Module chính của game
-│ ├── assets/ # Assets riêng của core
-│ │ ├── uiskin.json
-│ │ ├── uiskin.atlas
-│ │ ├── uiskin.png
-│ │ └── background/ # Export từ HyperLap2D (Overlap2D)
-│ │ ├── scene.dt
-│ │ ├── project.pack
-│ │ └── project.png
-│ │
-│ └── src/main/java/Com/pack/Mario/
-│ ├── Game/
-│ │ └── SuperMario.java # Class gốc của game
-│ ├── ScreenBeforePlay/
-│ │ └── LoginScreen.java # Màn hình Login
-│ └── Main.java # Không dùng nếu đã có SuperMario
+│   └── src/main/java/Com/pack/Mario/
+│       ├── Game/SuperMario.java
+│       ├── ScreenBeforePlay/LoginScreen.java
+│       └── Main.java
 │
-├── lwjgl3/ # Desktop launcher (LWJGL3)
-│ └── src/main/java/Com/pack/Mario/lwjgl3/
-│ ├── Lwjgl3Launcher.java # Main để chạy game trên desktop
-│ └── StartupHelper.java
+├── lwjgl3/
+│   └── src/main/java/Com/pack/Mario/lwjgl3/
+│       ├── Lwjgl3Launcher.java
+│       └── StartupHelper.java
+
 ```
