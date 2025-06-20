@@ -72,16 +72,21 @@ public class LoginScreen implements Screen {
 
     @Override
     public void show() {
-        Gdx.input.setInputProcessor(new InputAdapter() {
+
+        InputAdapter EscClickExit = new InputAdapter() {
             @Override
             public boolean keyDown(int keycode) {
                 if (keycode == Input.Keys.ESCAPE) {
                     showDialog();
                 }
-                return true;
+                return false;
             }
 
-        });
+        };
+        InputMultiplexer multiplexer = new InputMultiplexer();
+        multiplexer.addProcessor(EscClickExit);
+        multiplexer.addProcessor(stage);
+        Gdx.input.setInputProcessor(multiplexer);
     }
 
     private void showDialog() {
